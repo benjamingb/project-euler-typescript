@@ -1,5 +1,7 @@
-import { of, from } from "rxjs";
-import { takeWhile, timeInterval, take, filter, reduce } from "rxjs/operators";
+import { from, Observable } from 'rxjs';
+import { takeWhile as tkeWhileRx, filter, reduce } from 'rxjs/operators';
+import { takeWhile, fibonacci } from './utils';
+
 /**
  * Problem 2
  * Even Fibonacci
@@ -15,52 +17,55 @@ import { takeWhile, timeInterval, take, filter, reduce } from "rxjs/operators";
  */
 
 export class P002 {
-    fib1 = (limit: number): number => {
-        let [prev, curr] = [1, 1];
-        let sum = 0;
-        while (curr < limit) {
-            !(curr % 2) && (sum += curr); // is eqaul to //if (curr % 2 ==0) sum += curr
-            [prev, curr] = [curr, curr + prev];
-        }
-        return sum;
-    };
-
-    //using fibonacci iteraror
-    fib2 = (limit: number): number => {
-        let sum = 0;
-        for (let n of fibonacci()) {
-            if (n >= limit) {
-                break;
-            }
-            !(n % 2) && (sum += n);
-        }
-
-        return sum;
-    };
-
-    fib3 = (limit: number): any => {
-        const sumEven = from(fibonacci()).pipe(
-            takeWhile((val) => val <= limit),
-            filter((val) => !(val % 2)),
-            reduce((sum, val) => sum + val, 0)
-        );
-        return sumEven;
-
-    };
-
-    solved = () => {
-        const limit = 4000000;
-        console.log(this.fib1(limit));
-        console.log(this.fib2(limit));
-        this.fib3(limit).subscribe((val: number) => console.log(val));;
-    };
-}
-
-// generator function
-function* fibonacci() {
-    let [prev, curr] = [0, 1];
-    while (true) {
-        [prev, curr] = [curr, prev + curr];
-        yield curr;
+  //
+  fib1 = (limit: number): number => {
+    let [prev, curr] = [1, 1];
+    let sum = 0;
+    while (curr < limit) {
+      !(curr % 2) && (sum += curr); // is equal to //if (curr % 2 ==0) sum += curr
+      [prev, curr] = [curr, curr + prev];
     }
+    return sum;
+  };
+
+  //using fibonacci iteraror
+  fib2 = (limit: number): number => {
+    let sum = 0;
+    for (let n of fibonacci()) {
+      if (n >= limit) {
+        break;
+      }
+      !(n % 2) && (sum += n); // is equal to //if (n % 2 ==0) sum += n
+    }
+
+    return sum;
+  };
+
+  //using generators
+  fib3 = (limit: number): number => {
+    const result = takeWhile((val: any) => val < limit, fibonacci());
+    const sumEven = [...result]
+      .filter(val => !(val % 2))
+      .reduce((acc, val) => acc + val);
+
+    return sumEven;
+  };
+
+  // using rsjx
+  fib4 = (limit: number): Observable<number> => {
+    const sumEven = from(fibonacci()).pipe(
+      tkeWhileRx(val => val <= limit),
+      filter(val => !(val % 2)),
+      reduce((acc, val) => acc + val)
+    );
+    return sumEven;
+  };
+
+  solved = () => {
+    const limit = 4000000;
+    console.log(this.fib1(limit));
+    console.log(this.fib2(limit));
+    console.log(this.fib3(limit));
+    this.fib4(limit).subscribe((val: number) => console.log(val));
+  };
 }

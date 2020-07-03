@@ -1,11 +1,11 @@
 /**
  * Problem 1
- * 
+ *
  * Multiples of 3 and 5
- * 
- * If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. 
+ *
+ * If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9.
  * The sum of these multiples is 23.
- * 
+ *
  * Find the sum of all the multiples of 3 or 5 below 1000.
  */
 
@@ -13,7 +13,7 @@ export class P001 {
   //using filter an reduce
   solution1 = (limit: number): number =>
     [...Array(limit).keys()]
-      .filter((x) => !(x % 3) || !(x % 5))
+      .filter(x => !(x % 3) || !(x % 5))
       .reduce((sum, val) => sum + val);
 
   //Using for..of
@@ -46,10 +46,10 @@ export class P001 {
     const solutions = [
       this.solution1(limit),
       this.solution2(limit),
-      this.solution3(limit),
+      this.solution3(limit)
     ];
 
-    solutions.map((result) => {
+    solutions.map(result => {
       console.log(result);
     });
   };

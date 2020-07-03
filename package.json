@@ -6,7 +6,8 @@
   "scripts": {
     "start": "tsc && node dist/index.js",
     "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
-    "test": "jasmine --reporter=jasmine-console-reporter --config=jasmine.json"
+    "test": "jasmine --reporter=jasmine-console-reporter --config=jasmine.json",
+    "format": "prettier --config ./.prettierrc --list-different \"src/**/*.ts\""
   },
   "keywords": [],
   "author": "",
@@ -17,12 +18,13 @@
     "jasmine": "^3.5.0",
     "jasmine-console-reporter": "^3.1.0",
     "nodemon": "^2.0.4",
+    "prettier": "2.0.5",
     "ts-node": "^8.10.2",
-    "typescript": "^3.9.5"
+    "typescript": "^3.9.6"
   },
   "dependencies": {
     "@types/inquirer": "^6.5.0",
-    "inquirer": "^7.2.0",
+    "inquirer": "^7.3.0",
     "rxjs": "^6.6.0"
   }
 }

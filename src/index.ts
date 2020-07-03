@@ -1,6 +1,6 @@
-import * as p from "./problems";
-import { quizzes } from "./problems/quizzes";
-import inquirer = require("inquirer");
+import * as p from './problems';
+import { quizzes } from './problems/quizzes';
+import inquirer = require('inquirer');
 
 async function prontDisplay(op: number): Promise<void> {
   console.clear();
@@ -13,26 +13,24 @@ async function prontDisplay(op: number): Promise<void> {
       break;
     case 2:
       new p.P002().solved();
-      break
+      break;
     case 3:
       new p.P003().solved();
-      break
+      break;
     default:
-      console.log("no found");
+      console.log('no found');
   }
 
-
-
   const answers = await inquirer.prompt({
-    type: "input",
-    name: "add",
-    message: "Please input the other problem number:",
+    type: 'input',
+    name: 'add',
+    message: 'Please input the other problem number:'
   });
-  if (answers["add"] !== "") {
-    if (answers["add"] == "0") {
+  if (answers['add'] !== '') {
+    if (answers['add'] == '0') {
       prontMain();
     } else {
-      prontDisplay(answers["add"]);
+      prontDisplay(answers['add']);
     }
   }
 }
@@ -42,13 +40,13 @@ async function prontMain(): Promise<void> {
   console.log(quizzes[0].p0.title);
   console.log(quizzes[0].p0.problem);
   const answers = await inquirer.prompt({
-    type: "input",
-    name: "add",
-    message: "Please input the  problem number:",
+    type: 'input',
+    name: 'add',
+    message: 'Please input the  problem number:'
   });
 
-  if (answers["add"] !== "") {
-    prontDisplay(answers["add"]);
+  if (answers['add'] !== '') {
+    prontDisplay(answers['add']);
   }
 }
 
