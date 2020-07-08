@@ -17,8 +17,9 @@ import { takeWhile, fibonacci } from './utils';
  */
 
 export class P002 {
-  //
-  fib1 = (limit: number): number => {
+  readonly problemName = 'evenFibonacci';
+
+  solution1 = (limit: number): number => {
     let [prev, curr] = [1, 1];
     let sum = 0;
     while (curr < limit) {
@@ -29,7 +30,7 @@ export class P002 {
   };
 
   //using fibonacci iteraror
-  fib2 = (limit: number): number => {
+  solution2 = (limit: number): number => {
     let sum = 0;
     for (let n of fibonacci()) {
       if (n >= limit) {
@@ -42,7 +43,7 @@ export class P002 {
   };
 
   //using generators
-  fib3 = (limit: number): number => {
+  solution3 = (limit: number): number => {
     const result = takeWhile((val: any) => val < limit, fibonacci());
     const sumEven = [...result]
       .filter(val => !(val % 2))
@@ -52,7 +53,7 @@ export class P002 {
   };
 
   // using rsjx
-  fib4 = (limit: number): Observable<number> => {
+  solution4 = (limit: number): Observable<number> => {
     const sumEven = from(fibonacci()).pipe(
       tkeWhileRx(val => val <= limit),
       filter(val => !(val % 2)),
@@ -62,10 +63,20 @@ export class P002 {
   };
 
   solved = () => {
-    const limit = 4000000;
-    console.log(this.fib1(limit));
-    console.log(this.fib2(limit));
-    console.log(this.fib3(limit));
-    this.fib4(limit).subscribe((val: number) => console.log(val));
+    const limit = 4_000_000;
+
+    const solutions = [
+      this.solution1(limit),
+      this.solution2(limit),
+      this.solution3(limit)
+    ];
+
+    solutions.map((result, i) => {
+      console.log(`${this.problemName} solution ${i + 1}:`, result);
+    });
+
+    this.solution4(limit).subscribe((val: number) =>
+      console.log(`${this.problemName} solution 4:`, val)
+    );
   };
 }

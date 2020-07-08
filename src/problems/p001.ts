@@ -10,6 +10,8 @@
  */
 
 export class P001 {
+  readonly problemName = 'multiple3and5';
+
   //using filter an reduce
   solution1 = (limit: number): number =>
     [...Array(limit).keys()]
@@ -49,8 +51,8 @@ export class P001 {
       this.solution3(limit)
     ];
 
-    solutions.map(result => {
-      console.log(result);
+    solutions.map((result, i) => {
+      console.log(`${this.problemName} solution ${i+1}:`, result);
     });
   };
 }

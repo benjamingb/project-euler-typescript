@@ -4,11 +4,11 @@ import inquirer = require('inquirer');
 
 async function prontDisplay(op: number): Promise<void> {
   console.clear();
-  console.log(quizzes[0].p1.title);
-  //11console.log(quizzes[0].p1.problem);
 
   switch (+op) {
     case 1:
+      console.log(quizzes.get(1).title);
+      console.log(quizzes.get(1).problem);
       new p.P001().solved();
       break;
     case 2:
@@ -16,6 +16,21 @@ async function prontDisplay(op: number): Promise<void> {
       break;
     case 3:
       new p.P003().solved();
+      break;
+    case 4:
+      new p.P004().solved();
+      break;
+    case 5:
+      new p.P005().solved();
+      break;
+    case 6:
+      new p.P006().solved();
+      break;
+    case 7:
+      new p.P007().solved();
+      break;
+    case 8:
+      new p.P008().solved();
       break;
     default:
       console.log('no found');
@@ -37,8 +52,7 @@ async function prontDisplay(op: number): Promise<void> {
 
 async function prontMain(): Promise<void> {
   console.clear();
-  console.log(quizzes[0].p0.title);
-  console.log(quizzes[0].p0.problem);
+  console.log(quizzes.get(0).problem);
   const answers = await inquirer.prompt({
     type: 'input',
     name: 'add',

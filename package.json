@@ -24,7 +24,9 @@
   },
   "dependencies": {
     "@types/inquirer": "^6.5.0",
+    "@types/mathjs": "^6.0.5",
     "inquirer": "^7.3.0",
+    "mathjs": "^7.0.2",
     "rxjs": "^6.6.0"
   }
 }
