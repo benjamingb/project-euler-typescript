@@ -1,3 +1,5 @@
+import { displaySolutions } from './solved';
+
 /**
  * Problem 1
  *
@@ -8,9 +10,8 @@
  *
  * Find the sum of all the multiples of 3 or 5 below 1000.
  */
-
 export class P001 {
-  readonly problemName = 'multiple3and5';
+  readonly problemName = 'Multiples of 3 and 5';
 
   //using filter an reduce
   solution1 = (limit: number): number =>
@@ -23,7 +24,7 @@ export class P001 {
     const list = Array.from({ length: limit }, (x, i: number) => i);
 
     let sum = 0;
-    for (let x of list) {
+    for (const x of list) {
       sum += !(x % 3) || !(x % 5) ? x : 0;
     }
 
@@ -50,9 +51,7 @@ export class P001 {
       this.solution2(limit),
       this.solution3(limit)
     ];
-
-    solutions.map((result, i) => {
-      console.log(`${this.problemName} solution ${i+1}:`, result);
-    });
+    console.log(this.problemName);
+    console.table(displaySolutions(solutions));
   };
 }

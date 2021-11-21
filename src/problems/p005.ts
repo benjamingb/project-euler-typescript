@@ -1,15 +1,18 @@
 import { range } from './utils';
 import { lcm } from 'mathjs';
+import { displaySolutions } from './solved';
 
 export class P005 {
-  smallMultiple1 = (limit: number): number => {
+  readonly problemName = 'Small Multiple';
+
+  solution1 = (limit: number): number => {
     return [...range(1, limit)].reduce(
       (result, val) => (result = lcm(result, val))
     );
   };
 
-  //using only iterators 
-  smallMultiple2 = (limit: number): number => {
+  //using only iterators
+  solution2 = (limit: number): number => {
     let isFound = false;
     let currNumber = 0;
 
@@ -29,9 +32,11 @@ export class P005 {
   };
 
   solved = () => {
-    console.log(this.smallMultiple1(20));
+    const limit = 20;
 
-    console.log(this.smallMultiple2(20));
+    const solutions = [this.solution1(limit), this.solution2(limit)];
+    console.log(this.problemName);
+    console.table(displaySolutions(solutions));
   };
 }
 

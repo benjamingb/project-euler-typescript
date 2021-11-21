@@ -1,7 +1,9 @@
 import { exit } from 'process';
-
+import { displaySolutions } from './solved';
 export class P008 {
-  private digist = `
+  readonly problemName = 'Problem 8';
+
+  private readonly digist = `
 73167176531330624919225119674426574742355349194934
 96983520312774506326239578318016984801869478851843
 85861560789112949495459501737958331952853208805511
@@ -35,9 +37,9 @@ export class P008 {
     let max = 0;
 
     for (let i = 0; i < this.digist.length - 12; i++) {
-      let part = this.digist.substr(i, len);
+      const part = this.digist.substr(i, len);
       let currentProduct = 1;
-      for (let n of part) {
+      for (const n of part) {
         currentProduct *= +n;
       }
       max = Math.max(max, currentProduct);
@@ -47,7 +49,9 @@ export class P008 {
 
   solved = () => {
     const limit = 13;
-    console.log(this.solution1(limit));
-    console.log(this.solution2(limit));
+
+    const solutions = [this.solution1(limit), this.solution2(limit)];
+    console.log(this.problemName);
+    console.table(displaySolutions(solutions));
   };
 }

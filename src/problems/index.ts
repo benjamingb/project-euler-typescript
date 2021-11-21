@@ -6,4 +6,3 @@ export * from './p005';
 export * from './p006';
 export * from './p007';
 export * from './p008';
-export * from './quizzes';

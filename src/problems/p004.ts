@@ -1,6 +1,18 @@
+import { displaySolutions } from './solved';
 import { range } from './utils';
 
+/**
+ * Problem 4
+ * Largest palindrome product
+ *
+ * A palindromic number reads the same both ways. The largest palindrome made
+ * from the product of two 2-digit numbers is 9009 = 91 × 99.
+ * Find the largest palindrome made from the product of two 3-digit numbers.
+ *
+ */
 export class P004 {
+  readonly problemName = 'Largest palindrome product';
+
   //333ms
   palindrome1 = (start: number, end: number): number => {
     /* length = end - start;
@@ -29,7 +41,7 @@ export class P004 {
           .filter(val => this.isPalindrome(val))
           .reduce((max, val) => (max < val ? val : max), 0);
 
-        if (pal > acc) return  pal;
+        if (pal > acc) return pal;
       }
       return acc;
     });
@@ -66,9 +78,20 @@ export class P004 {
     return parseInt(reverse) === n;
   };
 
+  //console.log(this.problemName);
+  //console.table(displaySolutions(solutions));
+
   solved = () => {
-    console.log(this.palindrome1(100, 1000));
-    console.log(this.palindrome2(100, 1000));
-    console.log(this.palindrome3(100, 1000));
+    const start = 100;
+    const end = 1000;
+
+    const solutions = [
+      this.palindrome1(start, end),
+      this.palindrome2(start, end),
+      this.palindrome3(start, end)
+    ];
+
+    console.log(this.problemName);
+    console.table(displaySolutions(solutions));
   };
 }

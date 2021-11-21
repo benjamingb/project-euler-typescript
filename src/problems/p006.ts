@@ -1,8 +1,10 @@
 import { range } from './utils';
-
+import { displaySolutions } from './solved';
 export class P006 {
-  multiple1 = (): number => {
-    const numbers = [...range(1, 100)];
+  readonly problemName = 'Problem 6';
+
+  solution1 = (limit: number): number => {
+    const numbers = [...range(1, limit)];
 
     const sumSquares1 = numbers
       .map(n => Math.pow(n, 2))
@@ -18,6 +20,10 @@ export class P006 {
   };
 
   solved = () => {
-    this.multiple1();
+    const limit = 1000;
+
+    const solutions = [this.solution1(limit)];
+    console.log(this.problemName);
+    console.table(displaySolutions(solutions));
   };
 }
