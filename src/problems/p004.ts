@@ -1,4 +1,4 @@
-import { displaySolutions } from './solved';
+import { showResults } from './solved';
 import { range } from './utils';
 
 /**
@@ -11,7 +11,7 @@ import { range } from './utils';
  *
  */
 export class P004 {
-  readonly problemName = 'Largest palindrome product';
+  readonly problemName = 'P0004 - Largest palindrome product';
 
   //333ms
   palindrome1 = (start: number, end: number): number => {
@@ -78,9 +78,6 @@ export class P004 {
     return parseInt(reverse) === n;
   };
 
-  //console.log(this.problemName);
-  //console.table(displaySolutions(solutions));
-
   solved = () => {
     const start = 100;
     const end = 1000;
@@ -91,7 +88,6 @@ export class P004 {
       this.palindrome3(start, end)
     ];
 
-    console.log(this.problemName);
-    console.table(displaySolutions(solutions));
+    showResults(this.problemName, solutions);
   };
 }

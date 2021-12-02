@@ -1,8 +1,7 @@
-import { from, Observable } from 'rxjs';
-import { takeWhile as tkeWhileRx, filter, reduce } from 'rxjs/operators';
-import { displaySolutions } from './solved';
-import { takeWhile, fibonacci } from './utils';
-import { performance } from 'perf_hooks';
+import { firstValueFrom, from, Observable } from 'rxjs';
+import { filter, reduce, takeWhile as tkeWhileRx } from 'rxjs/operators';
+import { showResults } from './solved';
+import { fibonacci, takeWhile } from './utils';
 
 /**
  * Problem 2
@@ -19,7 +18,7 @@ import { performance } from 'perf_hooks';
  */
 
 export class P002 {
-  readonly problemName = 'Even Fibonacci';
+  readonly problemName = 'P0002 - Even Fibonacci';
 
   solution1 = (limit: number): number => {
     let [prev, curr] = [1, 1];
@@ -70,17 +69,10 @@ export class P002 {
     const solutions = [
       this.solution1(limit),
       this.solution2(limit),
-      this.solution3(limit)
+      this.solution3(limit),
+      firstValueFrom(this.solution4(limit))
     ];
 
-    console.log(this.problemName);
-    console.table(displaySolutions(solutions));
-
-    const startTime = performance.now();
-    this.solution4(limit).subscribe((val: number) => {
-      const endTime = performance.now();
-      const totalTime = Number((endTime - startTime).toFixed(6));
-      console.table({ 'Solution 4': { Result: val, Time: totalTime } });
-    });
+    showResults(this.problemName, solutions);
   };
 }

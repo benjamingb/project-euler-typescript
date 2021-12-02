@@ -1,29 +1,34 @@
 import { range } from './utils';
-import { displaySolutions } from './solved';
+import { showResults } from './solved';
+
+/**
+ * Problem 6
+ *
+ * Sum square difference
+ *
+ *
+ *
+ */
 export class P006 {
-  readonly problemName = 'Problem 6';
+  readonly problemName = 'P0006 - Sum square difference';
 
   solution1 = (limit: number): number => {
     const numbers = [...range(1, limit)];
 
-    const sumSquares1 = numbers
-      .map(n => Math.pow(n, 2))
-      .reduce((a, b) => a + b);
-    console.log('sum', sumSquares1);
+    // sum of the squares
+    const sumSquares = numbers.map(n => Math.pow(n, 2)).reduce((a, b) => a + b);
 
-    const sumSquares2 = numbers.reduce((a, b) => a + b);
-    console.log('sum', sumSquares2);
+    // sum of number
+    const sum = numbers.reduce((a, b) => a + b);
 
-    const diff = Math.pow(sumSquares2, 2) - sumSquares1;
-    console.log({ diff });
-    return 1;
+    return Math.pow(sum, 2) - sumSquares;
   };
 
   solved = () => {
-    const limit = 1000;
+    const limit = 100;
 
     const solutions = [this.solution1(limit)];
-    console.log(this.problemName);
-    console.table(displaySolutions(solutions));
+
+    showResults(this.problemName, solutions);
   };
 }

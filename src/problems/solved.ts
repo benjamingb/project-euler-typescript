@@ -21,3 +21,8 @@ export function displaySolutions<T>(solutions: T[]) {
 
   return results;
 }
+
+export function showResults<T>(title: string, solutions: T[]): void {
+  console.log(title);
+  console.table(displaySolutions(solutions));
+}

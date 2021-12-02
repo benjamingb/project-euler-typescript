@@ -1,5 +1,4 @@
-import { exit } from 'process';
-import { displaySolutions } from './solved';
+import { showResults } from './solved';
 export class P008 {
   readonly problemName = 'Problem 8';
 
@@ -51,7 +50,7 @@ export class P008 {
     const limit = 13;
 
     const solutions = [this.solution1(limit), this.solution2(limit)];
-    console.log(this.problemName);
-    console.table(displaySolutions(solutions));
+
+    showResults(this.problemName, solutions);
   };
 }

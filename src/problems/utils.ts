@@ -4,7 +4,7 @@ console.log([...result]);*/
 
 // generator function
 export function* takeWhile(fn: any, xs: any) {
-  for (let x of xs) {
+  for (const x of xs) {
     if (fn(x)) yield x;
     else break;
   }
@@ -42,14 +42,14 @@ export function* naturalNumbers() {
 }
 
 /**
- * Determine if number is prime 
- * @param n number 
+ * Determine if number is prime
+ * @param n number
  */
 function isPrime(n: number) {
   if (isNaN(n) || !isFinite(n) || n % 1 || n < 2) return false;
 
   const m = Math.sqrt(n);
-  for (var i = 2; i <= m; i++) {
+  for (let i = 2; i <= m; i++) {
     if (n % i == 0) return false;
   }
   return true;
@@ -59,7 +59,7 @@ function isPrime(n: number) {
  *  return iterator prime number
  */
 export function* genPrime() {
-  var count = 0;
+  let count = 0;
   while (true) {
     if (isPrime(count)) yield count;
     count++;

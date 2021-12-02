@@ -1,9 +1,18 @@
 import { range } from './utils';
 import { lcm } from 'mathjs';
-import { displaySolutions } from './solved';
+import { showResults } from './solved';
 
+/**
+ * Problem 5
+ *
+ * Smallest multiple
+ *
+ * 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+ * What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
+ *
+ */
 export class P005 {
-  readonly problemName = 'Small Multiple';
+  readonly problemName = 'P0005 - Small Multiple';
 
   solution1 = (limit: number): number => {
     return [...range(1, limit)].reduce(
@@ -11,7 +20,6 @@ export class P005 {
     );
   };
 
-  //using only iterators
   solution2 = (limit: number): number => {
     let isFound = false;
     let currNumber = 0;
@@ -35,21 +43,7 @@ export class P005 {
     const limit = 20;
 
     const solutions = [this.solution1(limit), this.solution2(limit)];
-    console.log(this.problemName);
-    console.table(displaySolutions(solutions));
-  };
-}
 
-function* evenNumber() {
-  let value = 2;
-  while (true) {
-    yield value;
-    console.log('-', { value });
-    //value += value % 2 ? 1 : 2;
-    if (!(value % 2)) {
-      console.log('xx', value);
-      value += 2;
-      console.log('a', value);
-    }
-  }
+    showResults(this.problemName, solutions);
+  };
 }
